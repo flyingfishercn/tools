@@ -72,21 +72,49 @@ Return
 ;OA
 #o::Run C:\Program Files (x86)\lotus\notes\notes.exe
 
+;push
+#x::Run D:\Users\Administrator\Desktop\adb_push_N1.bat
+
 ;adb_push .bat
-#p::Run D:\Users\Administrator\Desktop\adb_push .bat
+#p::Run D:\Users\Administrator\Desktop\adb_push_MTK.bat
 
 ;lingoes
 #t::Run C:\Users\Administrator\AppData\Local\Lingoes\Translator\lingoes-cn\Lingoes.exe
 
 ;eclipse
-#j::Run D:\software\eclipse\eclipse.exe
+#j::Run D:\software\eclipse-cn\eclipse.exe -nl en
 
-;字符串替换
-::'g::http://www.google.com{Left 2}
+; Win + X
+;#x:: ; Attention:  Strips formatting from the clipboard too!
+;Send ^c
+;clipboard = "%clipboard%"
+; Remove space introduced by WORD
+;StringReplace, clipboard, clipboard,%A_SPACE%",", All
+;Send ^v
+;return
 
-if (a_hour>10)    ; a_hour 是系统变量, 是当前系统时间中的小时
+; F7 to launch or switch to chrome
+$F7::
+IfWinActive, Google Chrome
 {
-    
-     Run C:\Program Files (x86)\Notepad++\notepad++.exe
-    
+	WinMinimize, Google Chrome 
+	return
 }
+IfWinExist Google Chrome
+{
+   WinActivateBottom, Google Chrome
+   return
+}
+Else
+{
+  Run "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+}
+Return
+
+$#Del::FileRecycleEmpty ; Win+Del to empty trash (recycle bin)
+
+;$F5::RUN ::{645ff040-5081-101b-9f08-00aa002f954e} ; open trash (recycle bin)
+
+; make Insert key to hide (minimize) current window
+$Insert::WinMinimize, A
+

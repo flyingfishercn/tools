@@ -1,0 +1,5 @@
+framework给push到system/app
+
+最后一个google play直接install
+
+然后在 data/app底下，把那个名字叫什么vendor_1 ***.apk,给拷到system/app底下，然后从起手机即可

@@ -1,6 +1,17 @@
-vistaSwitcher
-launchy
-everything
-foxitReader
-free download manager
-autohotkey
+阅读工具
+	foxitReader
+	Total commander & viatc
+下载
+	free download manager
+自动化
+	autohotkey
+	vistaSwitcher
+	launchy
+	everything
+UML
+	astah UML
+编写python
+	pycharm
+编写cmd
+	吞噬者
+	visual bat

@@ -1,6 +1,5 @@
 阅读工具
 	foxitReader
-	Total commander & viatc
 下载
 	free download manager
 自动化
@@ -15,3 +14,8 @@ UML
 编写cmd
 	吞噬者
 	visual bat
+手机UI界面
+	wireframesketcher studio
+文件管理
+	viatc
+	

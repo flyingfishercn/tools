@@ -18,4 +18,8 @@ UML
 	wireframesketcher studio
 文件管理
 	viatc
+编写perl
+	padre
+linux多客户端
+	mtputty.exe
 	

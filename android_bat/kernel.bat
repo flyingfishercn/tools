@@ -1,0 +1,1 @@
+adb shell cat proc/kmsg -v time > c:/kernel.log

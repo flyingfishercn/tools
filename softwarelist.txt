@@ -11,6 +11,9 @@ UML
 	astah UML
 编写python
 	pycharm
+编写perl
+	padre
+	Strawberry Perl
 编写cmd
 	吞噬者
 	visual bat
@@ -18,8 +21,11 @@ UML
 	wireframesketcher studio
 文件管理
 	viatc
-编写perl
-	padre
 linux多客户端
 	mtputty.exe
+mini tools
+	System Explorer
+	GetFoldersize
+	myuninst
+	pdfdecrypt.exe
 	

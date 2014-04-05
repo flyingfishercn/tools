@@ -10,6 +10,7 @@ set report_switch_camera=c:/testCameraMemory/report_switch_camera.png
 set report_capture_camera=c:/testCameraMemory/report_capture_camera.png
 set report_record_camera=c:/testCameraMemory/report_record_camera.png
 set report_autofocus_camera=c:/testCameraMemory/report_autofocus_camera.png
+set report_hdrtest_camera=c:/testCameraMemory/report_hdrtest_camera.png
 
 set procrank_camera_total=c:/testCameraMemory/procrankCameratotal.tmp
 set procrank_mediaserver_total=c:/testCameraMemory/procrankMediaservertotal.tmp
@@ -26,13 +27,14 @@ echo 2: 前后切换摄像头(switch-camera)
 echo 3：普通拍照(capture)
 echo 4: 录像(recording)
 echo 5: 对焦(autofocus)
+echo 6: HDR拍照测试
 echo ##################################### 
 
 set /p option=请输入选项(多项请用.分割):
 set /p times=测试次数(enter默认1000次)
 echo 您选择测试: %option%  次数 %times%
-choice /C 1 /N /M "选项MTK请选择1，选项qualcomm请选择2"
-echo platform为%ERRORLEVEL%
+rem choice /C 1 /N /M "选项MTK请选择1，选项qualcomm请选择2"
+rem echo platform为%ERRORLEVEL%
 
 cd /d c:/testCameraMemory
 del /s/q *.tmp
@@ -51,6 +53,7 @@ for /F "tokens=1,* delims=." %%a in ("%option%") do (
 	if %%a==3 goto capture
 	if %%a==4 goto recording
 	if %%a==5 goto autofocus
+	if %%a==6 goto hdrtest
 	echo invalid option exit
 	goto end
 )
@@ -117,6 +120,14 @@ cd /d c:/testCameraMemory
 del /s/q *.tmp
 call monkeyrunner %~dp0\script\units-monkeyPlayback.py 5 %times% %procrank_page% %procrank_camera_total%
 call python %~dp0\script\analyseUssDate.py %procrank_camera_total% %procrank_mediaserver_total% %extramem_total% %report_autofocus_camera%
+goto again
+
+:hdrtest
+echo hdrtest
+cd /d c:/testCameraMemory
+del /s/q *.tmp
+call monkeyrunner %~dp0\script\units-monkeyPlayback.py 6 %times% %procrank_page% %procrank_camera_total%
+call python %~dp0\script\analyseUssDate.py %procrank_camera_total% %procrank_mediaserver_total% %extramem_total% %report_hdrtest_camera%
 goto again
 
 :kill

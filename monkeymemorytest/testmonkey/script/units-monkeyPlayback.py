@@ -1,3 +1,13 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#File Name:subpackage2File2
+#created by zhiquan.huang on 13-12-28 at 下午10:13
+#Pls contact flyingfishercn@gmail.com or huangzq@oppo.com
+#Software Engineer
+#Product Software Department
+#Guangdong OPPO Mobile Telecommunications Corp.，Ltd
+#Gaoxin park South District 1st Road shenzhen, China
+
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice ,MonkeyImage
 from UserDict import DictMixin
 
@@ -259,8 +269,8 @@ def switchCamera(device, times):
 #########################switch-camera end##########
 
 #########################  capture begin  ##########
-ratioCaptureBtnPosX=float(540.0/1080)
-ratioCaptureBtnPosY=float(1792.0/1920)
+ratioCaptureBtnPosX=float(274.0/540)
+ratioCaptureBtnPosY=float(897.0/960)
 #TOUCH|{'x':357,'y':1200,'type':'downAndUp',}
 def captureCamera(device, times):
     #print("gShellProcrankCmd is"+gShellProcrankCmd)
@@ -281,9 +291,9 @@ def captureCamera(device, times):
             print("unknown command:" + cmd)
             break;
         CMD_MAP[cmd](device, objOrderDict)
-        time.sleep(4)
-        os.system(gShellProcrankCmd)
-        getcurrentmeminfo()
+        time.sleep(1.5)
+        #os.system(gShellProcrankCmd)
+        #getcurrentmeminfo()
         if number==times:
             device.press('KEYCODE_BACK')
 #########################  capture end  ###########
@@ -350,6 +360,27 @@ def autofocusCamera(device, times):
         if number==times:
             device.press('KEYCODE_BACK')
 #########################  autofocus end  ###########
+def hdrtestCamera(device, times):
+     for number in range(times):
+        cmd="TOUCH"
+        screensize = getScreenSize()
+        capturePosX=272
+        capturePosY=898
+        objOrderDict = OrderedDict()
+        objOrderDict["type"]="downAndUp"
+        objOrderDict["x"]=capturePosX
+        objOrderDict["y"]=capturePosY
+        if cmd not in CMD_MAP:
+            print("unknown command:" + cmd)
+            break;
+        CMD_MAP[cmd](device, objOrderDict)
+        time.sleep(2)
+        os.system(gShellProcrankCmd)
+        getcurrentmeminfo()
+        if number==times:
+            device.press('KEYCODE_BACK')
+
+
 
 ######################### change camera mode only begin #####
 '''
@@ -387,7 +418,8 @@ def funcmodule(type, device, times):
                 '2':lambda:switchCamera(device, times),
                 '3':lambda:captureCamera(device, times),
                 '4':lambda:recordCamera(device, times),
-                '5':lambda:autofocusCamera(device, times),}
+                '5':lambda:autofocusCamera(device, times),
+                '6':lambda:hdrtestCamera(device, times)}
     print("type is"  +type )
     return testfunc[type]()
 

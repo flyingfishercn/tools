@@ -9,6 +9,7 @@
 	everything
 UML
 	astah UML
+	smartDraw
 ±àÐ´python
 	pycharm
 ±àÐ´perl
@@ -28,4 +29,5 @@ mini tools
 	GetFoldersize
 	myuninst
 	pdfdecrypt.exe
-	
+Í¼Æ¬±ê×¢
+	Skitch

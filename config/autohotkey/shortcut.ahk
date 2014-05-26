@@ -53,36 +53,48 @@ ActivateAndOpen(t,p)
 ;°Ù¶È
 #b::Run www.baidu.com
 
+;android resource
+#a::Run https://github.com/android/platform_frameworks_base
+
 ;¹È¸è
 ;#g::
  ;  Run http://203.208.46.148/search?q=%clipboard%
 ;Return
 
-#g::
-Run www.waaao.com
-Return
+;#g::
+;Run www.waaao.com
+;Return
 
 #s::
-Run C:\Program Files (x86)\Everything\Everything.exe
+Run D:\software\Everything\Everything.exe
 Return
 
 ;Notepad
-#n::Run C:\Program Files (x86)\Notepad++\notepad++.exe
+#n::Run d:\software\notepad++\notepad++.exe
 
 ;OA
 #o::Run C:\Program Files (x86)\lotus\notes\notes.exe
 
-;push
-#x::Run D:\Users\Administrator\Desktop\adb_push_N1.bat
+;adb_push_N1
+#q::Run D:\Users\Administrator\Desktop\adb_push_N1.bat
+
+;adb_push _find5
+#f::Run D:\Users\Administrator\Desktop\adb_push _find5.bat
 
 ;adb_push .bat
-#p::Run D:\Users\Administrator\Desktop\adb_push_MTK.bat
+#m::Run D:\Users\Administrator\Desktop\adb_push_MTK.bat
+
+;adb_push_phone
+#p::Run D:\Users\Administrator\Desktop\adb_push_phone.bat
+
+;adblog_MTK .bat
+#g::Run D:\Users\Administrator\Desktop\adblog_MTK.bat
 
 ;lingoes
 #t::Run C:\Users\Administrator\AppData\Local\Lingoes\Translator\lingoes-cn\Lingoes.exe
 
 ;eclipse
-#j::Run D:\software\eclipse-cn\eclipse.exe -nl en
+#j::Run D:\software\eclipse-java-kepler-SR1-win32-x86_64\eclipse\eclipse.exe -nl en
 
 ; Win + X
 ;#x:: ; Attention:  Strips formatting from the clipboard too!
@@ -107,9 +119,49 @@ IfWinExist Google Chrome
 }
 Else
 {
-  Run "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+  Run "D:\software\chrome\chrome.exe"
 }
 Return
+
+$F8::
+
+IfWinExist Lingoes
+{
+	process=notepad.exe 
+	Process, Exist, %process%
+	if	pid :=	ErrorLevel
+	{
+		Loop 
+		{
+			WinClose, ahk_pid %pid%, , 5	; will wait 5 sec for window to close
+			if	ErrorLevel	; if it doesn't close
+				Process, Close, %pid%	; force it 
+			Process, Exist, %process%
+		}	Until	!pid :=	ErrorLevel
+	}
+
+	process=Lingoes.exe 
+	Process, Exist, %process%
+	if	pid :=	ErrorLevel
+	{
+		Loop 
+		{
+			WinClose, ahk_pid %pid%, , 5	; will wait 5 sec for window to close
+			if	ErrorLevel	; if it doesn't close
+				Process, Close, %pid%	; force it 
+			Process, Exist, %process%
+		}	Until	!pid :=	ErrorLevel
+	}
+	Return
+	
+}
+Else
+{
+  Run "C:\Users\Administrator\AppData\Local\Lingoes\Translator\lingoes-cn\Lingoes.exe"
+
+}
+Return
+
 
 $#Del::FileRecycleEmpty ; Win+Del to empty trash (recycle bin)
 
@@ -117,4 +169,6 @@ $#Del::FileRecycleEmpty ; Win+Del to empty trash (recycle bin)
 
 ; make Insert key to hide (minimize) current window
 $Insert::WinMinimize, A
+
+
 

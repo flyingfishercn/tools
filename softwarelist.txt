@@ -22,12 +22,13 @@ UML
 	wireframesketcher studio
 文件管理
 	viatc
+	listary
 linux多客户端
 	mtputty.exe
 mini tools
 	System Explorer
 	GetFoldersize
 	myuninst
-	pdfdecrypt.exe
+	pdfdecrypt.ex
 图片标注
 	Skitch

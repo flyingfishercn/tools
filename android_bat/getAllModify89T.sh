@@ -21,5 +21,5 @@ PATCH_TIME=`date +%F-%H-%M`
 PATCH_PATH=./patch_${PATCH_TIME}
 
 mkdir ${PATCH_PATH}
-find ${SEARCH_PATH} -type f -newer ${REF_FILE} |xargs cp --parent -t ${PATCH_PATH} \;
+find ${SEARCH_PATH} -type f -newer ${REF_FILE} |xargs cp --parent -t ${PATCH_PATH}
 tree ${PATCH_PATH} 

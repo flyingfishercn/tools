@@ -50,16 +50,8 @@ ActivateAndOpen(t,p)
 ^Up::Send {PgDn}
 
  ;＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-;biying
-#b::Run http://cn.bing.com/?mkt=zh-CN
-
-;设备管理器
-#h::Run C:\testmonkey\testmonkey\open_device_mgr.bat 0
-
-;删除安装程序
-#p::Run C:\testmonkey\testmonkey\open_device_mgr.bat 1
-
-;删除卸载程序
+;百度
+#b::Run www.baidu.com
 
 ;android resource
 #a::Run https://github.com/android/platform_frameworks_base
@@ -67,6 +59,10 @@ ActivateAndOpen(t,p)
 ;谷歌
 ;#g::
  ;  Run http://203.208.46.148/search?q=%clipboard%
+;Return
+
+;#g::
+;Run www.waaao.com
 ;Return
 
 #s::
@@ -77,7 +73,7 @@ Return
 #n::Run d:\software\notepad++\notepad++.exe
 
 ;OA
-#o::Run C:\Program Files\lotus\notes\notes.exe
+#o::Run C:\Program Files (x86)\lotus\notes\notes.exe
 
 ;adb_push_N1
 #q::Run D:\Users\Administrator\Desktop\adb_push_N1.bat
@@ -86,8 +82,10 @@ Return
 #f::Run D:\Users\Administrator\Desktop\adb_push _find5.bat
 
 ;adb_push .bat
-#m::Run http://search.mscbsc.com/
+#m::Run D:\Users\Administrator\Desktop\adb_push_MTK.bat
 
+;adb_push_phone
+#p::Run D:\Users\Administrator\Desktop\adb_push_phone.bat
 
 ;adblog_MTK .bat
 #g::Run D:\Users\Administrator\Desktop\adblog_MTK.bat
@@ -116,64 +114,17 @@ IfWinActive, Google Chrome
 }
 IfWinExist Google Chrome
 {
-	WinActivateBottom, Google Chrome
-	return
+   WinActivateBottom, Google Chrome
+   return
 }
 Else
 {
-	Run "D:\software\chrome\chrome.exe"
-	return
+  Run "D:\software\chrome\chrome.exe"
 }
 Return
 
-; F8 to launch or switch to rtx
 $F8::
-If (WinActive("OPPO 深圳分部 ahk_class #32770")) or (WinExist("OPPO 深圳分部 ahk_class #32770"))
-{
-	WinMinimize OPPO 深圳分部 ahk_class #32770
-	return
-}
-Else
-{
-	Run "D:\software\RTX\RTX.exe"
-	return
-}
-Return
 
-
-;ctrl+o to move to symbol window
-/*
-$F10::
-If (WinActive("Android-20140711_0320_14019 Project - Source Insight ahk_class si_Frame"))
-{
-	;MsgBox, movetoedit = %movetoedit%
-	if(movetoedit = 0){
-		;MsgBox, movetoedit = 0
-		;CoordMode, Mouse, Screen
-		;MouseGetPos, xpos, ypos
-		Send, {ALTDOWN}l{ALTUP}
-		movetoedit = 1
-		return	
-	}else{
-		;MsgBox, movetoedit = %movetoedit%
-		Send, {Esc}
-		;MouseClick, left, %xpos%, %ypos%
-		movetoedit = 0
-		return
-	}
-	;Send, {ALTDOWN}{tab}{ALTUP}	
-	return
-}
-Else
-{
-	MsgBox not active 
-	return
-}
-Return
-*/
-
-
-$F9::
 IfWinExist Lingoes
 {
 	process=notepad.exe 
@@ -211,59 +162,13 @@ Else
 }
 Return
 
+
 $#Del::FileRecycleEmpty ; Win+Del to empty trash (recycle bin)
 
 ;$F5::RUN ::{645ff040-5081-101b-9f08-00aa002f954e} ; open trash (recycle bin)
 
-;make Insert key to hide (minimize) current window
+; make Insert key to hide (minimize) current window
 $Insert::WinMinimize, A
 
 
-;::btw::by the way 
-
-
-
-
-
-;###############################################test##############################################
-; EXAMPLE #1: This is a working script that adds a new menu item to the bottom of the tray icon menu.
-
-#Persistent  ; Keep the script running until the user exits it.
-Menu, tray, add  ; Creates a separator line.
-Menu, tray, add, Item1, MenuHandler  ; Creates a new menu item.
-return
-
-MenuHandler:
-MsgBox You selected %A_ThisMenuItem% from menu %A_ThisMenu%.
-return
-
-
-;FileSelectFolder, OutputVar, ::{20d04fe0-3aea-1069-a2d8-08002b30309d}  ; 我的电脑.
-
-#1::
-{
-	MouseGetPos
-	Click right
-	sleep, 500
-	MouseMove, 10, 50, 5, R
-	Sleep, 500
-	MouseClick, L
-	return
-}
-
-
-
-#i::
-{
-send {Ctrl Down}a{Ctrl Up}
-MouseGetPos
-Click right
-sleep 100
-MouseMove, 10, 400, 5, R
-Sleep, 100
-;MouseClick, L
-
-;send {alt}w
-return
-}
 
